@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../lib/firebase';
+import { auth } from '../../lib/firebase';
+import { EmailInput } from '../components/atoms/form/EmailInput';
+import { PasswordInput } from '../components/atoms/form/Password';
 
 const RegisterScreen = () => {
     const [email, setEmail] = useState('');
@@ -28,37 +30,10 @@ const RegisterScreen = () => {
         >
             <Text style={{ fontSize: 20, marginBottom: 20 }}>ユーザ登録画面</Text>
             <View style={{ marginBottom: 20 }}>
-                <TextInput
-                    style={{
-                        width: 250,
-                        borderWidth: 1,
-                        padding: 5,
-                        borderColor: 'gray',
-                    }}
-                    onChangeText={setEmail}
-                    value={email}
-                    placeholder="メールアドレスを入力してください"
-                    // 特定の文字を自動で大文字にする属性を無効
-                    autoCapitalize="none"
-                    // 入力時に表示される候補を表示する属性を無効
-                    autoCorrect={false}
-                />
+                <EmailInput value={email} setValue={setEmail} />
             </View>
             <View style={{ marginBottom: 20 }}>
-                <TextInput
-                    style={{
-                        width: 250,
-                        borderWidth: 1,
-                        padding: 5,
-                        borderColor: 'gray',
-                    }}
-                    onChangeText={setPassword}
-                    value={password}
-                    placeholder="パスワードを入力してください"
-                    // 入力テキストを隠す
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                />
+                <PasswordInput value={password} setValue={setPassword} />
             </View>
             {/* ビューをタッチ操作に応答させて見せるために不透明度を変化させるラッパー */}
             <TouchableOpacity
@@ -67,6 +42,7 @@ const RegisterScreen = () => {
                     backgroundColor: '#88cb7f',
                     borderRadius: 10,
                 }}
+                disabled={!email || !password}
                 onPress={handleRegister}
             >
                 <Text style={{ color: 'white' }}>登録する</Text>
