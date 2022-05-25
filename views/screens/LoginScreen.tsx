@@ -11,8 +11,13 @@ import {
 import { auth } from '../../lib/firebase';
 import { EmailInput } from '../components/atoms/form/EmailInput';
 import { PasswordInput } from '../components/atoms/form/Password';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
+    const navigation = useNavigation();
+  
+    const toRegisterScreen = () => navigation.navigate('Register' as never);
+  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -48,6 +53,12 @@ const LoginScreen = () => {
                 disabled={!email || !password}
             >
                 <Text style={{ color: 'white' }}>ログイン</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{ marginTop: 10 }}
+                onPress={toRegisterScreen}
+            >
+                <Text>ユーザ登録はこちら</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     );

@@ -1,14 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { auth } from '../../lib/firebase';
 import { signOut } from 'firebase/auth';
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
-
-  const toRegisterScreen = () => navigation.navigate('Register' as never);
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -22,7 +17,6 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text>ホーム画面</Text>
-      <Button title="新規登録画面へ" onPress={toRegisterScreen} />
       <TouchableOpacity
         onPress={handleLogout}
         style={{
