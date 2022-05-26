@@ -1,9 +1,19 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { auth } from '../../lib/firebase';
-import { signOut } from 'firebase/auth';
+import { Auth, signOut } from 'firebase/auth';
+import JSONTree from 'react-native-json-tree';
 
 const HomeScreen = () => {
+  const [loginStatus, setLoginStatus] = useState('');
+  useEffect(() => {
+    if (auth?.currentUser?.isAnonymous ?? false) {
+      setLoginStatus('匿名ログイン中');
+    } else {
+      setLoginStatus('email・password ログイン中');
+    }
+  }, [auth]);
+
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -15,21 +25,26 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>ホーム画面</Text>
-      <TouchableOpacity
-        onPress={handleLogout}
-        style={{
-          marginTop: 10,
-          padding: 10,
-          backgroundColor: '#88cb7f',
-          borderRadius: 10,
-          width: 100,
-        }}
-      >
-        <Text style={{ color: 'white' }}>ログアウト</Text>
-      </TouchableOpacity>
-    </View>
+    <ScrollView >
+      <View style={styles.container}>
+        <Text>ホーム画面</Text>
+        <Text style={{ color: 'red' }}>{loginStatus}</Text>
+        <TouchableOpacity
+          onPress={handleLogout}
+          style={{
+            marginTop: 10,
+            padding: 10,
+            backgroundColor: '#88cb7f',
+            borderRadius: 10,
+            width: 100,
+          }}
+        >
+          <Text style={{ color: 'white' }}>ログアウト</Text>
+        </TouchableOpacity>
+        <Text style={{ marginTop: 30 }}>auth オブジェクト</Text>
+        <Text><JSONTree data={auth as any} /></Text>
+      </View>
+    </ScrollView>
   );
 };
 
