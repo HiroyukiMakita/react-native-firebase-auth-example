@@ -7,6 +7,7 @@ import RegisterScreen from './views/screens/auth/email-and-password/RegisterUseE
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginByAnonymousScreen from './views/screens/auth/anonymous/LoginByAnonymousScreen';
+import LinkWithEmailAndPasswordScreen from './views/screens/auth/anonymous/LinkWithEmailAndPasswordScreen';
 import LoginUseEmailAndPasswordScreen from './views/screens/auth/email-and-password/LoginUseEmailAndPasswordScreen';
 
 /** ユーザーの状態を保持 */
@@ -49,8 +50,12 @@ export default function App() {
                   <Stack.Screen name="LoginByAnonymousScreen" component={LoginByAnonymousScreen} options={{ title: 'ログイン(匿名認証)' }} />
                   <Stack.Screen name="Register" component={RegisterScreen} options={{ title: '新規登録' }} />
                 </>
+              ) : (
+                <>
+                  <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'ホーム' }} />
+                  <Stack.Screen name="LinkWithEmailAndPasswordScreen" component={LinkWithEmailAndPasswordScreen} options={{ title: 'email・password 認証へ昇格' }} />
+                </>
               )
-              : <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'ホーム' }} />
           }
         </Stack.Navigator>
       </NavigationContainer>
