@@ -1,23 +1,24 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { auth } from '../../lib/firebase';
 import { deleteUser, signOut } from 'firebase/auth';
 import JSONTree from 'react-native-json-tree';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [loginStatus, setLoginStatus] = useState('');
 
-  const isAnonymous = useMemo(() => {
-    return auth?.currentUser?.isAnonymous ?? false;
-  }, [auth]);
-
-  useEffect(() => {
+  useFocusEffect(() => {
+    setIsAnonymous(auth?.currentUser?.isAnonymous ?? false);
     if (isAnonymous) {
       setLoginStatus('匿名ログイン中');
     } else {
       setLoginStatus('email・password ログイン中');
     }
-  }, [isAnonymous]);
+  });
 
   const handleLogout = async () => {
     if (isAnonymous) {
@@ -40,6 +41,8 @@ const HomeScreen = () => {
       });
   };
 
+  const toLinkWithEmailAndPasswordScreen = () => navigation.navigate('LinkWithEmailAndPasswordScreen' as never);
+
   return (
     <ScrollView >
       <View style={styles.container}>
@@ -57,6 +60,19 @@ const HomeScreen = () => {
         >
           <Text style={{ color: 'white', textAlign: 'center' }}>ログアウト</Text>
         </TouchableOpacity>
+        {isAnonymous &&
+          <TouchableOpacity
+            onPress={toLinkWithEmailAndPasswordScreen}
+            style={{
+              marginTop: 10,
+              padding: 10,
+              backgroundColor: '#3882c3',
+              borderRadius: 10,
+              width: 200,
+            }}
+          >
+            <Text style={{ color: 'white', textAlign: 'center' }}>email・passowrd 認証へ変更</Text>
+          </TouchableOpacity>}
         <Text style={{ marginTop: 30 }}>auth オブジェクト</Text>
         <Text><JSONTree data={auth as any} /></Text>
       </View>
