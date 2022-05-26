@@ -3,7 +3,7 @@ import { auth } from './lib/firebase';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './views/screens/HomeScreen';
-import RegisterScreen from './views/screens/auth/email-and-password/RegisterScreen';
+import RegisterScreen from './views/screens/auth/email-and-password/RegisterUseEmailAndPasswordScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginByAnonymousScreen from './views/screens/auth/anonymous/LoginByAnonymousScreen';
