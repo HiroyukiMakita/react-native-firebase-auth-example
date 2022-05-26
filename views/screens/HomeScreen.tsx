@@ -55,7 +55,7 @@ const HomeScreen = () => {
             width: 100,
           }}
         >
-          <Text style={{ color: 'white' }}>ログアウト</Text>
+          <Text style={{ color: 'white', textAlign: 'center' }}>ログアウト</Text>
         </TouchableOpacity>
         <Text style={{ marginTop: 30 }}>auth オブジェクト</Text>
         <Text><JSONTree data={auth as any} /></Text>
