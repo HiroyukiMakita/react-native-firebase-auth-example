@@ -1,20 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { auth } from '../../lib/firebase';
-import { Auth, signOut } from 'firebase/auth';
+import { deleteUser, signOut } from 'firebase/auth';
 import JSONTree from 'react-native-json-tree';
 
 const HomeScreen = () => {
   const [loginStatus, setLoginStatus] = useState('');
+
+  const isAnonymous = useMemo(() => {
+    return auth?.currentUser?.isAnonymous ?? false;
+  }, [auth]);
+
   useEffect(() => {
-    if (auth?.currentUser?.isAnonymous ?? false) {
+    if (isAnonymous) {
       setLoginStatus('匿名ログイン中');
     } else {
       setLoginStatus('email・password ログイン中');
     }
-  }, [auth]);
+  }, [isAnonymous]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    if (isAnonymous) {
+      await deleteUser(auth.currentUser!)
+        .then(() => {
+          console.log('deleteUser success');
+        })
+        .catch((error) => {
+          console.log('deleteUser failed: ', error.message);
+        });
+      return;
+    }
+
     signOut(auth)
       .then(() => {
         console.log('logout');
