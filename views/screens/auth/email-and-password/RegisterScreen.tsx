@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../lib/firebase';
-import { EmailInput } from '../components/atoms/form/EmailInput';
-import { PasswordInput } from '../components/atoms/form/Password';
+import { auth } from '../../../../lib/firebase';
+import { EmailInput } from '../../../components/atoms/form/EmailInput';
+import { PasswordInput } from '../../../components/atoms/form/Password';
 
 const RegisterScreen = () => {
     const [email, setEmail] = useState('');
@@ -28,7 +28,7 @@ const RegisterScreen = () => {
                 flex: 1,
             }}
         >
-            <Text style={{ fontSize: 20, marginBottom: 20 }}>ユーザ登録画面</Text>
+            <Text style={{ fontSize: 20, marginBottom: 20 }}>ユーザ登録画面(email・password)</Text>
             <View style={{ marginBottom: 20 }}>
                 <EmailInput value={email} setValue={setEmail} />
             </View>

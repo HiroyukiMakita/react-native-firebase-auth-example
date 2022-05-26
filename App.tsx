@@ -1,13 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from './lib/firebase';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './views/screens/HomeScreen';
-import RegisterScreen from './views/screens/RegisterScreen';
+import RegisterScreen from './views/screens/auth/email-and-password/RegisterScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './views/screens/LoginScreen';
+import LoginByAnonymousScreen from './views/screens/auth/anonymous/LoginByAnonymousScreen';
+import LoginUseEmailAndPasswordScreen from './views/screens/auth/email-and-password/LoginUseEmailAndPasswordScreen';
 
 /** ユーザーの状態を保持 */
 type UserState = User | null;
@@ -45,7 +45,8 @@ export default function App() {
             user === null
               ? (
                 <>
-                  <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'ログイン' }} />
+                  <Stack.Screen name="LoginUseEmailAndPasswordScreen" component={LoginUseEmailAndPasswordScreen} options={{ title: 'ログイン(email・password)' }} />
+                  <Stack.Screen name="LoginByAnonymousScreen" component={LoginByAnonymousScreen} options={{ title: 'ログイン(匿名認証)' }} />
                   <Stack.Screen name="Register" component={RegisterScreen} options={{ title: '新規登録' }} />
                 </>
               )
