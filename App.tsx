@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginByAnonymousScreen from './views/screens/auth/anonymous/LoginByAnonymousScreen';
 import LinkWithEmailAndPasswordScreen from './views/screens/auth/anonymous/LinkWithEmailAndPasswordScreen';
 import LoginUseEmailAndPasswordScreen from './views/screens/auth/email-and-password/LoginUseEmailAndPasswordScreen';
+import RegisterUsePhoneNumberScreen from './views/screens/auth/phone/RegisterUsePhoneNumberScreen';
 
 /** ユーザーの状態を保持 */
 type UserState = User | null;
@@ -48,6 +49,7 @@ export default function App() {
                 <>
                   <Stack.Screen name="LoginUseEmailAndPasswordScreen" component={LoginUseEmailAndPasswordScreen} options={{ title: 'ログイン(email・password)' }} />
                   <Stack.Screen name="LoginByAnonymousScreen" component={LoginByAnonymousScreen} options={{ title: 'ログイン(匿名認証)' }} />
+                  <Stack.Screen name="RegisterUsePhoneNumberScreen" component={RegisterUsePhoneNumberScreen} options={{ title: '電話番号登録' }} />
                   <Stack.Screen name="Register" component={RegisterScreen} options={{ title: '新規登録' }} />
                 </>
               ) : (
