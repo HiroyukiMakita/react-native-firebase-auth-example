@@ -40,7 +40,7 @@ const RegisterUsePhoneNumberScreen = () => {
             <Text style={{ marginTop: 20 }}>電話番号を入力</Text>
             <TextInput
                 style={{ marginVertical: 10, fontSize: 17 }}
-                placeholder="+81 090 0000 0000"
+                placeholder="+81 999 999 9999"
                 autoFocus
                 // autoCompleteType="tel"
                 keyboardType="phone-pad"
