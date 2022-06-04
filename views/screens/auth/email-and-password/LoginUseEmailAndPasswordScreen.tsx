@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { auth } from '../../../../lib/firebase';
 import { EmailInput } from '../../../components/atoms/form/EmailInput';
-import { PasswordInput } from '../../../components/atoms/form/Password';
+import { PasswordInput } from '../../../components/atoms/form/PasswordInput';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {

@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, View, Text, TouchableOpacity } from 'react-native
 import { EmailAuthProvider, linkWithCredential, updateCurrentUser } from 'firebase/auth';
 import { auth } from '../../../../lib/firebase';
 import { EmailInput } from '../../../components/atoms/form/EmailInput';
-import { PasswordInput } from '../../../components/atoms/form/Password';
+import { PasswordInput } from '../../../components/atoms/form/PasswordInput';
 import { useNavigation } from '@react-navigation/native';
 
 const LinkWithEmailAndPasswordScreen = () => {

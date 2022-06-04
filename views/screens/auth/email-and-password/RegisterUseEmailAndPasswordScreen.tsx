@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity } from 'r
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../../lib/firebase';
 import { EmailInput } from '../../../components/atoms/form/EmailInput';
-import { PasswordInput } from '../../../components/atoms/form/Password';
+import { PasswordInput } from '../../../components/atoms/form/PasswordInput';
 
 const RegisterScreen = () => {
     const [email, setEmail] = useState('');
