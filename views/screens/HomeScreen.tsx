@@ -63,6 +63,8 @@ const HomeScreen = () => {
 
   const toLinkWithEmailAndPasswordScreen = () => navigation.navigate('LinkWithEmailAndPasswordScreen' as never);
 
+  const toLinkWithPhoneNumberScreen = () => navigation.navigate('LinkWithPhoneNumberScreen' as never);
+
   return (
     <ScrollView >
       <View style={styles.container}>
@@ -82,8 +84,12 @@ const HomeScreen = () => {
           <Text style={{ color: 'white', textAlign: 'center' }}>ログアウト</Text>
         </TouchableOpacity>
         {isAnonymous &&
-          <TouchableOpacity
-            onPress={toLinkWithEmailAndPasswordScreen}
+          [
+            { label: 'email・passowrd 認証へ変更', action: toLinkWithEmailAndPasswordScreen },
+            { label: '電話番号認証へ変更', action: toLinkWithPhoneNumberScreen }
+          ].map((object) =>
+          (<TouchableOpacity
+            onPress={object.action}
             style={{
               marginTop: 10,
               padding: 10,
@@ -92,8 +98,8 @@ const HomeScreen = () => {
               width: 200,
             }}
           >
-            <Text style={{ color: 'white', textAlign: 'center' }}>email・passowrd 認証へ変更</Text>
-          </TouchableOpacity>}
+            <Text style={{ color: 'white', textAlign: 'center' }}>{object.label}</Text>
+          </TouchableOpacity>))}
         <View>
           <Text style={{ marginTop: 30, textAlign: 'center' }}>auth オブジェクト</Text>
           <Text><JSONTree data={auth as any} /></Text>

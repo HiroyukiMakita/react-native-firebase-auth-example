@@ -43,7 +43,7 @@ const LinkWithEmailAndPasswordScreen = () => {
             }}
         >
             <Text>ユーザ登録画面</Text>
-            <Text style={{ fontSize: 20, marginBottom: 20 }}>(email・password 認証へ昇格)</Text>
+            <Text style={{ fontSize: 20, marginBottom: 20 }}>(匿名認証アカウントを email・password 認証でリンク)</Text>
             <View style={{ marginBottom: 20 }}>
                 <EmailInput value={email} setValue={setEmail} />
             </View>
@@ -60,7 +60,7 @@ const LinkWithEmailAndPasswordScreen = () => {
                 disabled={!email || !password}
                 onPress={handleLink}
             >
-                <Text style={{ color: 'white' }}>email・password 認証ユーザーに昇格</Text>
+                <Text style={{ color: 'white' }}>email・password 認証認証でリンクする</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     );

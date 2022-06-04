@@ -10,6 +10,7 @@ import LoginByAnonymousScreen from './views/screens/auth/anonymous/LoginByAnonym
 import LinkWithEmailAndPasswordScreen from './views/screens/auth/anonymous/LinkWithEmailAndPasswordScreen';
 import LoginUseEmailAndPasswordScreen from './views/screens/auth/email-and-password/LoginUseEmailAndPasswordScreen';
 import RegisterUsePhoneNumberScreen from './views/screens/auth/phone/RegisterUsePhoneNumberScreen';
+import LinkWithPhoneNumberScreen from './views/screens/auth/anonymous/LinkWithPhoneNumberScreen';
 
 /** ユーザーの状態を保持 */
 type UserState = User | null;
@@ -49,13 +50,14 @@ export default function App() {
                 <>
                   <Stack.Screen name="LoginUseEmailAndPasswordScreen" component={LoginUseEmailAndPasswordScreen} options={{ title: 'ログイン(email・password)' }} />
                   <Stack.Screen name="LoginByAnonymousScreen" component={LoginByAnonymousScreen} options={{ title: 'ログイン(匿名認証)' }} />
-                  <Stack.Screen name="RegisterUsePhoneNumberScreen" component={RegisterUsePhoneNumberScreen} options={{ title: '電話番号登録' }} />
+                  <Stack.Screen name="RegisterUsePhoneNumberScreen" component={RegisterUsePhoneNumberScreen} options={{ title: '電話番号認証' }} />
                   <Stack.Screen name="Register" component={RegisterScreen} options={{ title: '新規登録' }} />
                 </>
               ) : (
                 <>
                   <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'ホーム' }} />
-                  <Stack.Screen name="LinkWithEmailAndPasswordScreen" component={LinkWithEmailAndPasswordScreen} options={{ title: 'email・password 認証へ昇格' }} />
+                  <Stack.Screen name="LinkWithEmailAndPasswordScreen" component={LinkWithEmailAndPasswordScreen} options={{ title: '匿名認証アカウントを email・password 認証でリンク' }} />
+                  <Stack.Screen name="LinkWithPhoneNumberScreen" component={LinkWithPhoneNumberScreen} options={{ title: '匿名認証アカウントを電話番号認証でリンク' }} />
                 </>
               )
           }
