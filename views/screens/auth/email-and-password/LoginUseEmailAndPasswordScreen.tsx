@@ -18,6 +18,7 @@ const LoginScreen = () => {
 
     const toRegisterScreen = () => navigation.navigate('Register' as never);
     const toLoginByAnonymousScreen = () => navigation.navigate('LoginByAnonymousScreen' as never);
+    const toRegisterUsePhoneNumberScreen = () => navigation.navigate('RegisterUsePhoneNumberScreen' as never);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -67,6 +68,12 @@ const LoginScreen = () => {
                 onPress={toLoginByAnonymousScreen}
             >
                 <Text>匿名認証はこちら</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{ marginTop: 10 }}
+                onPress={toRegisterUsePhoneNumberScreen}
+            >
+                <Text>電話番号認証はこちら</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     );
