@@ -87,8 +87,9 @@ const HomeScreen = () => {
           [
             { label: 'email・passowrd 認証へ変更', action: toLinkWithEmailAndPasswordScreen },
             { label: '電話番号認証へ変更', action: toLinkWithPhoneNumberScreen }
-          ].map((object) =>
+          ].map((object, index) =>
           (<TouchableOpacity
+            key={`link-action-button-${index}`}
             onPress={object.action}
             style={{
               marginTop: 10,
