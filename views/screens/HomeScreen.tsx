@@ -78,10 +78,10 @@ const HomeScreen = () => {
             padding: 10,
             backgroundColor: '#88cb7f',
             borderRadius: 10,
-            width: 100,
+            width: isAnonymous ? 200 : 100,
           }}
         >
-          <Text style={{ color: 'white', textAlign: 'center' }}>ログアウト</Text>
+          <Text style={{ color: 'white', textAlign: 'center' }}>ログアウト{isAnonymous && '(ユーザー削除)'}</Text>
         </TouchableOpacity>
         {isAnonymous &&
           [
